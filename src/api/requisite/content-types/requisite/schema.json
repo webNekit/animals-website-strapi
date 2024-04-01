@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "requisites",
+  "info": {
+    "singularName": "requisite",
+    "pluralName": "requisites",
+    "displayName": "Реквизиты"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "enumeration",
+      "enum": [
+        "Сбербанк",
+        "Тинькофф",
+        "Альфа-банк",
+        "Банк ВТБ",
+        "Газпромбанк",
+        "Россельхозбанк",
+        "Хоум Банк",
+        "Райффайзенбанк",
+        "Промсвязьбанк",
+        "Почта банк",
+        "Открытие"
+      ],
+      "default": "Сбербанк"
+    },
+    "code": {
+      "type": "biginteger",
+      "required": true,
+      "min": "16"
+    },
+    "directors": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
