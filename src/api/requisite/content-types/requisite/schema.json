@@ -4,7 +4,8 @@
   "info": {
     "singularName": "requisite",
     "pluralName": "requisites",
-    "displayName": "Реквизиты"
+    "displayName": "Банковские карты",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true

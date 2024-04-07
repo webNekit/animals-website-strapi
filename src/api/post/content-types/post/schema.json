@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "singularName": "post",
+    "pluralName": "posts",
+    "displayName": "Новости и объявления",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "postName": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "smallText": {
+      "type": "richtext",
+      "required": true
+    },
+    "longText": {
+      "type": "richtext"
+    },
+    "postImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "otherImage": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "postName",
+      "required": true
+    },
+    "categoryId": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "postsId"
+    },
+    "isRecomended": {
+      "type": "boolean",
+      "default": false
+    },
+    "isBanner": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

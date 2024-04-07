@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "transfers",
+  "info": {
+    "singularName": "transfer",
+    "pluralName": "transfers",
+    "displayName": "Банковские переводы",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "inn": {
+      "type": "biginteger",
+      "required": false,
+      "min": "10"
+    },
+    "kpp": {
+      "type": "biginteger",
+      "min": "9"
+    },
+    "bik": {
+      "type": "biginteger",
+      "min": "9"
+    },
+    "payment": {
+      "type": "biginteger",
+      "min": "10"
+    },
+    "cor": {
+      "type": "biginteger",
+      "min": "20"
+    },
+    "description": {
+      "type": "richtext"
+    }
+  }
+}

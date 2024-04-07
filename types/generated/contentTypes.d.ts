@@ -362,60 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiRequisiteRequisite extends Schema.CollectionType {
-  collectionName: 'requisites';
-  info: {
-    singularName: 'requisite';
-    pluralName: 'requisites';
-    displayName: '\u0420\u0435\u043A\u0432\u0438\u0437\u0438\u0442\u044B';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.Enumeration<
-      [
-        '\u0421\u0431\u0435\u0440\u0431\u0430\u043D\u043A',
-        '\u0422\u0438\u043D\u044C\u043A\u043E\u0444\u0444',
-        '\u0410\u043B\u044C\u0444\u0430-\u0431\u0430\u043D\u043A',
-        '\u0411\u0430\u043D\u043A \u0412\u0422\u0411',
-        '\u0413\u0430\u0437\u043F\u0440\u043E\u043C\u0431\u0430\u043D\u043A',
-        '\u0420\u043E\u0441\u0441\u0435\u043B\u044C\u0445\u043E\u0437\u0431\u0430\u043D\u043A',
-        '\u0425\u043E\u0443\u043C \u0411\u0430\u043D\u043A',
-        '\u0420\u0430\u0439\u0444\u0444\u0430\u0439\u0437\u0435\u043D\u0431\u0430\u043D\u043A',
-        '\u041F\u0440\u043E\u043C\u0441\u0432\u044F\u0437\u044C\u0431\u0430\u043D\u043A',
-        '\u041F\u043E\u0447\u0442\u0430 \u0431\u0430\u043D\u043A',
-        '\u041E\u0442\u043A\u0440\u044B\u0442\u0438\u0435'
-      ]
-    > &
-      Attribute.DefaultTo<'\u0421\u0431\u0435\u0440\u0431\u0430\u043D\u043A'>;
-    code: Attribute.BigInteger &
-      Attribute.Required &
-      Attribute.SetMinMax<
-        {
-          min: '16';
-        },
-        string
-      >;
-    directors: Attribute.String & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::requisite.requisite',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::requisite.requisite',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -842,6 +788,198 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438 \u043D\u043E\u0432\u043E\u0441\u0442\u0435\u0439';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    categoryName: Attribute.String & Attribute.Required & Attribute.Unique;
+    postsId: Attribute.Relation<
+      'api::category.category',
+      'oneToMany',
+      'api::post.post'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPostPost extends Schema.CollectionType {
+  collectionName: 'posts';
+  info: {
+    singularName: 'post';
+    pluralName: 'posts';
+    displayName: '\u041D\u043E\u0432\u043E\u0441\u0442\u0438 \u0438 \u043E\u0431\u044A\u044F\u0432\u043B\u0435\u043D\u0438\u044F';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    postName: Attribute.String & Attribute.Required & Attribute.Unique;
+    smallText: Attribute.RichText & Attribute.Required;
+    longText: Attribute.RichText;
+    postImage: Attribute.Media & Attribute.Required;
+    otherImage: Attribute.Media;
+    slug: Attribute.UID<'api::post.post', 'postName'> & Attribute.Required;
+    categoryId: Attribute.Relation<
+      'api::post.post',
+      'manyToOne',
+      'api::category.category'
+    >;
+    isRecomended: Attribute.Boolean & Attribute.DefaultTo<false>;
+    isBanner: Attribute.Boolean & Attribute.DefaultTo<false>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRequisiteRequisite extends Schema.CollectionType {
+  collectionName: 'requisites';
+  info: {
+    singularName: 'requisite';
+    pluralName: 'requisites';
+    displayName: '\u0411\u0430\u043D\u043A\u043E\u0432\u0441\u043A\u0438\u0435 \u043A\u0430\u0440\u0442\u044B';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.Enumeration<
+      [
+        '\u0421\u0431\u0435\u0440\u0431\u0430\u043D\u043A',
+        '\u0422\u0438\u043D\u044C\u043A\u043E\u0444\u0444',
+        '\u0410\u043B\u044C\u0444\u0430-\u0431\u0430\u043D\u043A',
+        '\u0411\u0430\u043D\u043A \u0412\u0422\u0411',
+        '\u0413\u0430\u0437\u043F\u0440\u043E\u043C\u0431\u0430\u043D\u043A',
+        '\u0420\u043E\u0441\u0441\u0435\u043B\u044C\u0445\u043E\u0437\u0431\u0430\u043D\u043A',
+        '\u0425\u043E\u0443\u043C \u0411\u0430\u043D\u043A',
+        '\u0420\u0430\u0439\u0444\u0444\u0430\u0439\u0437\u0435\u043D\u0431\u0430\u043D\u043A',
+        '\u041F\u0440\u043E\u043C\u0441\u0432\u044F\u0437\u044C\u0431\u0430\u043D\u043A',
+        '\u041F\u043E\u0447\u0442\u0430 \u0431\u0430\u043D\u043A',
+        '\u041E\u0442\u043A\u0440\u044B\u0442\u0438\u0435'
+      ]
+    > &
+      Attribute.DefaultTo<'\u0421\u0431\u0435\u0440\u0431\u0430\u043D\u043A'>;
+    code: Attribute.BigInteger &
+      Attribute.Required &
+      Attribute.SetMinMax<
+        {
+          min: '16';
+        },
+        string
+      >;
+    directors: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::requisite.requisite',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::requisite.requisite',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTransferTransfer extends Schema.CollectionType {
+  collectionName: 'transfers';
+  info: {
+    singularName: 'transfer';
+    pluralName: 'transfers';
+    displayName: '\u0411\u0430\u043D\u043A\u043E\u0432\u0441\u043A\u0438\u0435 \u043F\u0435\u0440\u0435\u0432\u043E\u0434\u044B';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    inn: Attribute.BigInteger &
+      Attribute.SetMinMax<
+        {
+          min: '10';
+        },
+        string
+      >;
+    kpp: Attribute.BigInteger &
+      Attribute.SetMinMax<
+        {
+          min: '9';
+        },
+        string
+      >;
+    bik: Attribute.BigInteger &
+      Attribute.SetMinMax<
+        {
+          min: '9';
+        },
+        string
+      >;
+    payment: Attribute.BigInteger &
+      Attribute.SetMinMax<
+        {
+          min: '10';
+        },
+        string
+      >;
+    cor: Attribute.BigInteger &
+      Attribute.SetMinMax<
+        {
+          min: '20';
+        },
+        string
+      >;
+    description: Attribute.RichText;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::transfer.transfer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::transfer.transfer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -852,7 +990,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::requisite.requisite': ApiRequisiteRequisite;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -861,6 +998,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::category.category': ApiCategoryCategory;
+      'api::post.post': ApiPostPost;
+      'api::requisite.requisite': ApiRequisiteRequisite;
+      'api::transfer.transfer': ApiTransferTransfer;
     }
   }
 }
