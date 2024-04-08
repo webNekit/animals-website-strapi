@@ -824,6 +824,51 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiPetPet extends Schema.CollectionType {
+  collectionName: 'pets';
+  info: {
+    singularName: 'pet';
+    pluralName: 'pets';
+    displayName: '\u041F\u0438\u0442\u043E\u043C\u0446\u044B';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.DefaultTo<'\u0428\u0430\u0440\u0438\u043A'>;
+    status_id: Attribute.Relation<
+      'api::pet.pet',
+      'manyToOne',
+      'api::status-pet.status-pet'
+    >;
+    gender: Attribute.Enumeration<
+      [
+        '\u041C\u0430\u043B\u044C\u0447\u0438\u043A',
+        '\u0414\u0435\u0432\u043E\u0447\u043A\u0430'
+      ]
+    > &
+      Attribute.Required;
+    breed: Attribute.String &
+      Attribute.Required &
+      Attribute.DefaultTo<'\u041E\u0432\u0447\u0430\u0440\u043A\u0430'>;
+    age: Attribute.Integer & Attribute.Required;
+    smallText: Attribute.RichText;
+    longtText: Attribute.RichText & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+    otherImage: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::pet.pet', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::pet.pet', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPostPost extends Schema.CollectionType {
   collectionName: 'posts';
   info: {
@@ -855,6 +900,37 @@ export interface ApiPostPost extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiReportReport extends Schema.CollectionType {
+  collectionName: 'reports';
+  info: {
+    singularName: 'report';
+    pluralName: 'reports';
+    displayName: '\u041E\u0442\u0447\u0435\u0442\u044B';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    reportName: Attribute.String & Attribute.Required;
+    reportFile: Attribute.Media & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::report.report',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::report.report',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -907,6 +983,41 @@ export interface ApiRequisiteRequisite extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::requisite.requisite',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiStatusPetStatusPet extends Schema.CollectionType {
+  collectionName: 'status_pets';
+  info: {
+    singularName: 'status-pet';
+    pluralName: 'status-pets';
+    displayName: '\u0421\u0442\u0430\u0442\u0443\u0441 \u0436\u0438\u0432\u043E\u0442\u043D\u044B\u0445';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    pets_id: Attribute.Relation<
+      'api::status-pet.status-pet',
+      'oneToMany',
+      'api::pet.pet'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::status-pet.status-pet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::status-pet.status-pet',
       'oneToOne',
       'admin::user'
     > &
@@ -999,8 +1110,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::category.category': ApiCategoryCategory;
+      'api::pet.pet': ApiPetPet;
       'api::post.post': ApiPostPost;
+      'api::report.report': ApiReportReport;
       'api::requisite.requisite': ApiRequisiteRequisite;
+      'api::status-pet.status-pet': ApiStatusPetStatusPet;
       'api::transfer.transfer': ApiTransferTransfer;
     }
   }

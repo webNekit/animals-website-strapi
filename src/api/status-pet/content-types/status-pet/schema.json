@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "status_pets",
+  "info": {
+    "singularName": "status-pet",
+    "pluralName": "status-pets",
+    "displayName": "Статус животных"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "pets_id": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::pet.pet",
+      "mappedBy": "status_id"
+    }
+  }
+}
