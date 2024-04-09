@@ -824,6 +824,38 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiGuideGuide extends Schema.CollectionType {
+  collectionName: 'guides';
+  info: {
+    singularName: 'guide';
+    pluralName: 'guides';
+    displayName: '\u0421\u043F\u0440\u0430\u0432\u043E\u0447\u043D\u0430\u044F \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    smallText: Attribute.RichText & Attribute.Required;
+    content: Attribute.Component<'info-fields.info-fields', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::guide.guide',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::guide.guide',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPetPet extends Schema.CollectionType {
   collectionName: 'pets';
   info: {
@@ -1110,6 +1142,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::category.category': ApiCategoryCategory;
+      'api::guide.guide': ApiGuideGuide;
       'api::pet.pet': ApiPetPet;
       'api::post.post': ApiPostPost;
       'api::report.report': ApiReportReport;

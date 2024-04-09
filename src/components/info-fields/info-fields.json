@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_info_fields_info_fields",
+  "info": {
+    "displayName": "infoFields",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "richtext"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
