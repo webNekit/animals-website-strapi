@@ -830,6 +830,7 @@ export interface ApiGuideGuide extends Schema.CollectionType {
     singularName: 'guide';
     pluralName: 'guides';
     displayName: '\u0421\u043F\u0440\u0430\u0432\u043E\u0447\u043D\u0430\u044F \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -838,6 +839,7 @@ export interface ApiGuideGuide extends Schema.CollectionType {
     name: Attribute.String & Attribute.Required;
     smallText: Attribute.RichText & Attribute.Required;
     content: Attribute.Component<'info-fields.info-fields', true>;
+    slug: Attribute.UID<'api::guide.guide', 'name'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

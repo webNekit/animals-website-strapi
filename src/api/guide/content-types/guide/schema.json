@@ -4,7 +4,8 @@
   "info": {
     "singularName": "guide",
     "pluralName": "guides",
-    "displayName": "Справочная информация"
+    "displayName": "Справочная информация",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -23,6 +24,10 @@
       "type": "component",
       "repeatable": true,
       "component": "info-fields.info-fields"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
     }
   }
 }
