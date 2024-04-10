@@ -12,10 +12,22 @@ export interface InfoFieldsInfoFields extends Schema.Component {
   };
 }
 
+export interface UiMuiliimage extends Schema.Component {
+  collectionName: 'components_ui_muiliimages';
+  info: {
+    displayName: 'muiliimage';
+    icon: 'grid';
+  };
+  attributes: {
+    images: Attribute.Media;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'info-fields.info-fields': InfoFieldsInfoFields;
+      'ui.muiliimage': UiMuiliimage;
     }
   }
 }
