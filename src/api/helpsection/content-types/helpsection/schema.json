@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "hepsections",
+  "info": {
+    "singularName": "helpsection",
+    "pluralName": "hepsections",
+    "displayName": "Помощь"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    }
+  }
+}

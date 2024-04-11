@@ -793,7 +793,7 @@ export interface ApiAboutAbout extends Schema.SingleType {
   info: {
     singularName: 'about';
     pluralName: 'abouts';
-    displayName: '\u041E \u043D\u0430\u0441';
+    displayName: '\u0421\u0435\u043A\u0446\u0438\u044F: \u041E \u043D\u0430\u0441';
     description: '';
   };
   options: {
@@ -884,6 +884,37 @@ export interface ApiGuideGuide extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::guide.guide',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHelpsectionHelpsection extends Schema.SingleType {
+  collectionName: 'hepsections';
+  info: {
+    singularName: 'helpsection';
+    pluralName: 'hepsections';
+    displayName: '\u041F\u043E\u043C\u043E\u0449\u044C';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.RichText;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::helpsection.helpsection',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::helpsection.helpsection',
       'oneToOne',
       'admin::user'
     > &
@@ -1179,6 +1210,7 @@ declare module '@strapi/types' {
       'api::about.about': ApiAboutAbout;
       'api::category.category': ApiCategoryCategory;
       'api::guide.guide': ApiGuideGuide;
+      'api::helpsection.helpsection': ApiHelpsectionHelpsection;
       'api::pet.pet': ApiPetPet;
       'api::post.post': ApiPostPost;
       'api::report.report': ApiReportReport;
