@@ -793,7 +793,7 @@ export interface ApiAboutAbout extends Schema.SingleType {
   info: {
     singularName: 'about';
     pluralName: 'abouts';
-    displayName: '\u0421\u0435\u043A\u0446\u0438\u044F: \u041E \u043D\u0430\u0441';
+    displayName: '\u0421\u0435\u043A\u0446\u0438\u044F: \u043E \u043D\u0430\u0441';
     description: '';
   };
   options: {
@@ -896,7 +896,8 @@ export interface ApiHelpsectionHelpsection extends Schema.SingleType {
   info: {
     singularName: 'helpsection';
     pluralName: 'hepsections';
-    displayName: '\u041F\u043E\u043C\u043E\u0449\u044C';
+    displayName: '\u0421\u0435\u043A\u0446\u0438\u044F: \u043F\u0438\u0442\u043E\u043C\u0446\u044B';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1189,6 +1190,37 @@ export interface ApiTransferTransfer extends Schema.CollectionType {
   };
 }
 
+export interface ApiVariantVariant extends Schema.SingleType {
+  collectionName: 'variants';
+  info: {
+    singularName: 'variant';
+    pluralName: 'variants';
+    displayName: '\u0421\u0435\u043A\u0446\u0438\u044F: \u043F\u043E\u043C\u043E\u0449\u044C';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.RichText;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::variant.variant',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::variant.variant',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1217,6 +1249,7 @@ declare module '@strapi/types' {
       'api::requisite.requisite': ApiRequisiteRequisite;
       'api::status-pet.status-pet': ApiStatusPetStatusPet;
       'api::transfer.transfer': ApiTransferTransfer;
+      'api::variant.variant': ApiVariantVariant;
     }
   }
 }
