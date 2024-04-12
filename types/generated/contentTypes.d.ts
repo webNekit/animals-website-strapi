@@ -891,6 +891,37 @@ export interface ApiGuideGuide extends Schema.CollectionType {
   };
 }
 
+export interface ApiGuidesectionGuidesection extends Schema.SingleType {
+  collectionName: 'guidesections';
+  info: {
+    singularName: 'guidesection';
+    pluralName: 'guidesections';
+    displayName: '\u0421\u0435\u043A\u0446\u0438\u044F: \u0441\u043F\u0440\u0430\u0432\u043E\u0447\u043D\u0430\u044F \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.RichText;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::guidesection.guidesection',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::guidesection.guidesection',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiHelpsectionHelpsection extends Schema.SingleType {
   collectionName: 'hepsections';
   info: {
@@ -1027,6 +1058,37 @@ export interface ApiReportReport extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::report.report',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiReqsectionReqsection extends Schema.SingleType {
+  collectionName: 'reqsections';
+  info: {
+    singularName: 'reqsection';
+    pluralName: 'reqsections';
+    displayName: '\u0421\u0435\u043A\u0446\u0438\u044F: \u0440\u0435\u043A\u0432\u0438\u0437\u0438\u0442\u044B';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.RichText;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::reqsection.reqsection',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::reqsection.reqsection',
       'oneToOne',
       'admin::user'
     > &
@@ -1242,10 +1304,12 @@ declare module '@strapi/types' {
       'api::about.about': ApiAboutAbout;
       'api::category.category': ApiCategoryCategory;
       'api::guide.guide': ApiGuideGuide;
+      'api::guidesection.guidesection': ApiGuidesectionGuidesection;
       'api::helpsection.helpsection': ApiHelpsectionHelpsection;
       'api::pet.pet': ApiPetPet;
       'api::post.post': ApiPostPost;
       'api::report.report': ApiReportReport;
+      'api::reqsection.reqsection': ApiReqsectionReqsection;
       'api::requisite.requisite': ApiRequisiteRequisite;
       'api::status-pet.status-pet': ApiStatusPetStatusPet;
       'api::transfer.transfer': ApiTransferTransfer;

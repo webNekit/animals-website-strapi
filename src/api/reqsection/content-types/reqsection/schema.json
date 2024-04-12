@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "reqsections",
+  "info": {
+    "singularName": "reqsection",
+    "pluralName": "reqsections",
+    "displayName": "Секция: реквизиты"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    }
+  }
+}
