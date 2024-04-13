@@ -922,6 +922,32 @@ export interface ApiGuidesectionGuidesection extends Schema.SingleType {
   };
 }
 
+export interface ApiHelpHelp extends Schema.CollectionType {
+  collectionName: 'helps';
+  info: {
+    singularName: 'help';
+    pluralName: 'helps';
+    displayName: '\u041F\u043E\u043C\u043E\u0449\u044C \u0433\u0440\u0430\u0436\u0434\u0430\u043D';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    smallText: Attribute.RichText;
+    content: Attribute.Component<'info-fields.info-fields', true>;
+    slug: Attribute.UID<'api::help.help', 'name'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::help.help', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::help.help', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiHelpsectionHelpsection extends Schema.SingleType {
   collectionName: 'hepsections';
   info: {
@@ -1339,6 +1365,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory;
       'api::guide.guide': ApiGuideGuide;
       'api::guidesection.guidesection': ApiGuidesectionGuidesection;
+      'api::help.help': ApiHelpHelp;
       'api::helpsection.helpsection': ApiHelpsectionHelpsection;
       'api::pet.pet': ApiPetPet;
       'api::post.post': ApiPostPost;
