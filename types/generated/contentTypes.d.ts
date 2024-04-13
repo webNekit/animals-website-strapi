@@ -1151,6 +1151,40 @@ export interface ApiRequisiteRequisite extends Schema.CollectionType {
   };
 }
 
+export interface ApiSettingSetting extends Schema.SingleType {
+  collectionName: 'settings';
+  info: {
+    singularName: 'setting';
+    pluralName: 'settings';
+    displayName: '\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u0441\u0430\u0439\u0442\u0430';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    siteTitle: Attribute.String & Attribute.Required;
+    siteDescription: Attribute.RichText & Attribute.Required;
+    siteLogo: Attribute.Media & Attribute.Required;
+    socials: Attribute.Component<'ui.socials', true>;
+    contacts: Attribute.Component<'ui.contacts', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::setting.setting',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::setting.setting',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiStatusPetStatusPet extends Schema.CollectionType {
   collectionName: 'status_pets';
   info: {
@@ -1311,6 +1345,7 @@ declare module '@strapi/types' {
       'api::report.report': ApiReportReport;
       'api::reqsection.reqsection': ApiReqsectionReqsection;
       'api::requisite.requisite': ApiRequisiteRequisite;
+      'api::setting.setting': ApiSettingSetting;
       'api::status-pet.status-pet': ApiStatusPetStatusPet;
       'api::transfer.transfer': ApiTransferTransfer;
       'api::variant.variant': ApiVariantVariant;

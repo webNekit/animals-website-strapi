@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_ui_socials",
+  "info": {
+    "displayName": "socials",
+    "icon": "link"
+  },
+  "options": {},
+  "attributes": {
+    "socialLink": {
+      "type": "text",
+      "required": true
+    },
+    "socialLogo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

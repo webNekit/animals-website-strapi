@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_ui_contacts",
+  "info": {
+    "displayName": "contacts",
+    "icon": "phone"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Номер телефона",
+        "Адрес эл.почты"
+      ],
+      "default": "Номер телефона"
+    },
+    "contactValue": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
