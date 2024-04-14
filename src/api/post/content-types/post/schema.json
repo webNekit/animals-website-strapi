@@ -21,9 +21,6 @@
       "type": "richtext",
       "required": true
     },
-    "longText": {
-      "type": "richtext"
-    },
     "postImage": {
       "type": "media",
       "multiple": false,
@@ -58,6 +55,14 @@
     "isBanner": {
       "type": "boolean",
       "default": false
+    },
+    "longText": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "rich"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
     }
   }
 }
